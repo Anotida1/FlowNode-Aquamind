@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar"
 import {
   BarChart3Icon,
+  BookOpenIcon,
   BotIcon,
   CloudSunIcon,
   CommandIcon,
@@ -41,6 +42,11 @@ const data = {
       title: "AI",
       url: "/ai",
       icon: <BotIcon className="size-4" />,
+    },
+    {
+      title: "Learning Hub",
+      url: "/learn",
+      icon: <BookOpenIcon className="size-4" />,
     },
     {
       title: "Analytics",
