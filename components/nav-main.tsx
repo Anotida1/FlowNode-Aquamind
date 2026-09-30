@@ -11,6 +11,8 @@ import {
 import { CirclePlusIcon, MailIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 
+const SUPPORT_EMAIL = "anotidaishe.hwena@gmail.com"
+
 export function NavMain({
   items,
 }: {
@@ -30,6 +32,7 @@ export function NavMain({
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
               tooltip="Quick Create"
+              onClick={() => router.push("/pricing")}
               className="min-w-8 bg-primary text-primary-foreground duration-200 ease-linear hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground"
             >
               <CirclePlusIcon
@@ -40,6 +43,7 @@ export function NavMain({
               size="icon"
               className="size-8 group-data-[collapsible=icon]:opacity-0"
               variant="outline"
+              onClick={() => window.location.href = `mailto:${SUPPORT_EMAIL}`}
             >
               <MailIcon
               />

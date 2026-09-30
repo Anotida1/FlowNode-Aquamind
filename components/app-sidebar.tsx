@@ -20,17 +20,16 @@ import {
   CloudSunIcon,
   CommandIcon,
   CircleHelpIcon,
+  DropletsIcon,
   LayoutDashboardIcon,
   LeafIcon,
-  SearchIcon,
-  Settings2Icon,
 } from "lucide-react"
 
 const data = {
   user: {
     name: "Joseph",
-    email: "j@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    email: "joseph@aquamind.com",
+    avatar: "/profile.avif",
   },
   navMain: [
     {
@@ -59,6 +58,11 @@ const data = {
       icon: <LeafIcon className="size-4" />,
     },
     {
+      title: "Crop Water",
+      url: "/crop-water",
+      icon: <DropletsIcon className="size-4" />,
+    },
+    {
       title: "Weather",
       url: "/weather",
       icon: <CloudSunIcon className="size-4" />,
@@ -66,26 +70,10 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
-    },
-    {
       title: "Get Help",
-      url: "#",
+      url: "/help",
       icon: (
         <CircleHelpIcon
-        />
-      ),
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: (
-        <SearchIcon
         />
       ),
     },

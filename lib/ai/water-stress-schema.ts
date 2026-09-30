@@ -19,8 +19,10 @@ export const waterStressSchema = {
 
         confidence: {
             type: "number",
+            minimum: 0,
+            maximum: 1,
             description:
-                "Confidence in the visual assessment from 0 to 100.",
+                "Confidence in the visual assessment as a decimal between 0 and 1. For example, 0.85 means 85% confidence.",
         },
 
         crop: {

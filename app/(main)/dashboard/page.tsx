@@ -108,7 +108,7 @@ export default function TankDashboard() {
                     </div>
 
                     {/* Tank markings */}
-                    <div className="absolute inset-0 flex flex-col justify-between p-4 text-xs font-medium text-muted-foreground">
+                    <div className="absolute inset-0 flex flex-col justify-between p-4 text-xs font-medium text-black">
                       <span>100%</span>
                       <span>75%</span>
                       <span>50%</span>
@@ -118,7 +118,7 @@ export default function TankDashboard() {
 
                     {/* Percentage */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="rounded-xl bg-background/90 px-5 py-3 text-center shadow">
+                      <div className="rounded-xl bg-background/90 px-2 py-2 text-center shadow">
                         <p className="text-4xl font-bold">
                           {tankLevel}%
                         </p>
@@ -242,8 +242,8 @@ export default function TankDashboard() {
                     1,240 L
                   </p>
 
-                  <p className="text-xs text-green-600">
-                    <TrendingUp /> 8% from yesterday
+                  <p className="text-xs text-green-600 flex flex-row items-center gap-2">
+                    <TrendingUp size={12} /> 8% from yesterday
                   </p>
                 </div>
               </CardContent>

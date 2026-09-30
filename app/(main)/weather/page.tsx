@@ -20,6 +20,7 @@ import {
   Gauge,
   LocateFixed,
 } from "lucide-react";
+import AIWeatherSummary from "@/features/weather/AIWeatherSummary";
 
 type Location = {
   name: string;
@@ -269,15 +270,15 @@ export default function Home() {
   const selected =
     weather && weather.daily
       ? {
-          date: weather.daily.time[selectedDay],
-          code: weather.daily.weather_code[selectedDay],
-          high: weather.daily.temperature_2m_max[selectedDay],
-          low: weather.daily.temperature_2m_min[selectedDay],
-          feels: weather.daily.apparent_temperature_max[selectedDay],
-          rain: weather.daily.precipitation_probability_max[selectedDay],
-          wind: weather.daily.wind_speed_10m_max[selectedDay],
-          uv: weather.daily.uv_index_max[selectedDay],
-        }
+        date: weather.daily.time[selectedDay],
+        code: weather.daily.weather_code[selectedDay],
+        high: weather.daily.temperature_2m_max[selectedDay],
+        low: weather.daily.temperature_2m_min[selectedDay],
+        feels: weather.daily.apparent_temperature_max[selectedDay],
+        rain: weather.daily.precipitation_probability_max[selectedDay],
+        wind: weather.daily.wind_speed_10m_max[selectedDay],
+        uv: weather.daily.uv_index_max[selectedDay],
+      }
       : null;
 
   const currentWeather = weather
@@ -311,22 +312,20 @@ export default function Home() {
           <div className="flex rounded-xl border border-slate-200 bg-white/60 p-1">
             <button
               onClick={() => setUnit("C")}
-              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                unit === "C"
-                  ? "bg-[#17384a] text-white"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
+              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${unit === "C"
+                ? "bg-[#17384a] text-white"
+                : "text-slate-500 hover:text-slate-900"
+                }`}
             >
               °C
             </button>
 
             <button
               onClick={() => setUnit("F")}
-              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${
-                unit === "F"
-                  ? "bg-[#17384a] text-white"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
+              className={`rounded-lg px-3 py-2 text-sm font-medium transition ${unit === "F"
+                ? "bg-[#17384a] text-white"
+                : "text-slate-500 hover:text-slate-900"
+                }`}
             >
               °F
             </button>
@@ -500,22 +499,20 @@ export default function Home() {
                     <button
                       key={date}
                       onClick={() => setSelectedDay(index)}
-                      className={`group min-h-[210px] rounded-2xl border p-4 transition ${
-                        active
-                          ? "border-[#17384a] bg-[#17384a] text-white shadow-xl shadow-[#17384a]/20"
-                          : "border-slate-200/70 bg-white/70 text-slate-900 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
-                      }`}
+                      className={`group min-h-[210px] rounded-2xl border p-4 transition ${active
+                        ? "border-[#17384a] bg-[#17384a] text-white shadow-xl shadow-[#17384a]/20"
+                        : "border-slate-200/70 bg-white/70 text-slate-900 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
+                        }`}
                     >
                       <div className="text-sm font-bold">
                         {formatDay(date, index)}
                       </div>
 
                       <div
-                        className={`mt-1 text-[11px] ${
-                          active
-                            ? "text-slate-300"
-                            : "text-slate-400"
-                        }`}
+                        className={`mt-1 text-[11px] ${active
+                          ? "text-slate-300"
+                          : "text-slate-400"
+                          }`}
                       >
                         {new Date(`${date}T12:00:00`).toLocaleDateString(
                           "en-US",
@@ -537,11 +534,10 @@ export default function Home() {
                       </div>
 
                       <div
-                        className={`min-h-8 text-xs ${
-                          active
-                            ? "text-slate-300"
-                            : "text-slate-500"
-                        }`}
+                        className={`min-h-8 text-xs ${active
+                          ? "text-slate-300"
+                          : "text-slate-500"
+                          }`}
                       >
                         {info.label}
                       </div>
@@ -561,11 +557,10 @@ export default function Home() {
                       </div>
 
                       <div
-                        className={`mt-3 flex items-center justify-center gap-1 text-[11px] ${
-                          active
-                            ? "text-[#9ed6ec]"
-                            : "text-[#5d94ae]"
-                        }`}
+                        className={`mt-3 flex items-center justify-center gap-1 text-[11px] ${active
+                          ? "text-[#9ed6ec]"
+                          : "text-[#5d94ae]"
+                          }`}
                       >
                         <Droplets size={12} />
 
@@ -640,6 +635,32 @@ export default function Home() {
                 />
               </div>
             </section>
+
+            <AIWeatherSummary
+              message={`
+Give me a weather summary for ${location.name}, ${location.country}.
+
+Date: ${selected.date}
+
+Current weather:
+Temperature: ${weather.current.temperature_2m}°C
+Feels like: ${weather.current.apparent_temperature}°C
+Humidity: ${weather.current.relative_humidity_2m}%
+Precipitation: ${weather.current.precipitation} mm
+Wind: ${weather.current.wind_speed_10m} km/h
+Weather condition: ${currentWeather?.label}
+
+Selected day forecast:
+High: ${selected.high}°C
+Low: ${selected.low}°C
+Feels like: ${selected.feels}°C
+Rain probability: ${selected.rain}%
+Maximum wind: ${selected.wind} km/h
+UV index: ${selected.uv}
+
+Explain the overall conditions and give practical advice.
+`}
+            />
 
             <footer className="flex flex-col justify-between gap-2 py-7 text-[11px] text-slate-400 sm:flex-row">
               <span>Powered By Flownode</span>
