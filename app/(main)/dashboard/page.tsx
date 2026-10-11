@@ -3,6 +3,6 @@ import TankDashboard from "@/features/dashboard/tankLevel";
 
 export default function Dashboard() {
   return (
-    <AquaMindDashboard />
+    <TankDashboard />
   )
 }

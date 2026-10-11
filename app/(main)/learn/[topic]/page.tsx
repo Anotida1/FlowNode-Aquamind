@@ -112,7 +112,7 @@ export default async function TopicPage({
                         </Link>
                     </Button>
 
-                    <Button className="rounded-xl bg-sky-500 hover:bg-sky-600" >
+                    <Button className="rounded-xl" >
                         <Link className="flex flex-row " href="/ai">
                             Ask AquaMind
                             <Droplets className="ml-2 h-4 w-4" />

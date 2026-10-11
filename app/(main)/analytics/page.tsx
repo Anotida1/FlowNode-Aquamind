@@ -20,32 +20,59 @@ import {
 } from "@/components/ui/card"
 
 import { Badge } from "@/components/ui/badge"
+import { ChartBarDefault } from "@/features/analytics/graph"
 
-const stats = [
-    {
+const analyticsData = {
+    estimatedWaterUsed: {
         title: "Estimated Water Used",
         value: "672 L",
         description: "Previous week",
         icon: Droplets,
     },
-    {
+    averageDailyUsage: {
         title: "Average Daily Usage",
         value: "96 L",
         description: "Estimated per day",
         icon: Gauge,
     },
-    {
+    waterSaved: {
         title: "Water Saved",
         value: "184 L",
         description: "This week",
         icon: TrendingDown,
     },
-    {
+    waterScore: {
         title: "Water Score",
         value: "78 / 100",
         description: "Good conservation habits",
         icon: Target,
     },
+    dailyGoal: {
+        value: "120 L",
+        description: "Your current target",
+    },
+    currentUsage: {
+        value: "96 L",
+        description: "24 L below your goal",
+    },
+    totalSaved: {
+        value: "184 L",
+        description: "Positive progress",
+    },
+    summary: {
+        waterUsedLitres: 672,
+        averagePerDayLitres: 96,
+        dailyGoalLitres: 120,
+        waterSavedLitres: 184,
+        score: 78,
+    },
+}
+
+const stats = [
+    analyticsData.estimatedWaterUsed,
+    analyticsData.averageDailyUsage,
+    analyticsData.waterSaved,
+    analyticsData.waterScore,
 ]
 
 export default function WaterAnalytics() {
@@ -178,14 +205,14 @@ export default function WaterAnalytics() {
                                 Your estimated water usage for the previous week was
                                 approximately{" "}
                                 <span className="font-semibold">
-                                    672 litres
+                                    {analyticsData.summary.waterUsedLitres} litres
                                 </span>
                                 , averaging around{" "}
                                 <span className="font-semibold">
-                                    96 litres per day
+                                    {analyticsData.summary.averagePerDayLitres} litres per day
                                 </span>
                                 . This puts your estimated daily usage below your
-                                current target of 120 litres per day, meaning you
+                                current target of {analyticsData.summary.dailyGoalLitres} litres per day, meaning you
                                 are currently using about 80% of your daily water
                                 goal.
                             </p>
@@ -194,13 +221,13 @@ export default function WaterAnalytics() {
                                 Your conservation progress is also positive. You
                                 have estimated savings of{" "}
                                 <span className="font-semibold">
-                                    184 litres
+                                    {analyticsData.summary.waterSavedLitres} litres
                                 </span>{" "}
                                 this week, which suggests that your recent water
                                 habits are helping to reduce unnecessary
                                 consumption. Your current AquaMind water score is{" "}
                                 <span className="font-semibold">
-                                    78 out of 100
+                                    {analyticsData.summary.score} out of 100
                                 </span>
                                 , placing your current habits in a good range.
                             </p>
@@ -290,11 +317,11 @@ export default function WaterAnalytics() {
                                 </p>
 
                                 <p className="mt-1 text-2xl font-semibold">
-                                    120 L
+                                    {analyticsData.dailyGoal.value}
                                 </p>
 
                                 <p className="mt-1 text-xs text-muted-foreground">
-                                    Your current target
+                                    {analyticsData.dailyGoal.description}
                                 </p>
                             </div>
 
@@ -305,11 +332,11 @@ export default function WaterAnalytics() {
                                 </p>
 
                                 <p className="mt-1 text-2xl font-semibold">
-                                    96 L
+                                    {analyticsData.currentUsage.value}
                                 </p>
 
                                 <p className="mt-1 text-xs text-green-600">
-                                    24 L below your goal
+                                    {analyticsData.currentUsage.description}
                                 </p>
                             </div>
 
@@ -320,11 +347,11 @@ export default function WaterAnalytics() {
                                 </p>
 
                                 <p className="mt-1 text-2xl font-semibold">
-                                    184 L
+                                    {analyticsData.totalSaved.value}
                                 </p>
 
                                 <p className="mt-1 text-xs text-green-600">
-                                    Positive progress
+                                    {analyticsData.totalSaved.description}
                                 </p>
                             </div>
 
@@ -359,6 +386,10 @@ export default function WaterAnalytics() {
 
                     </CardContent>
                 </Card>
+            </section>
+
+            <section className="grid grid-cols-2">
+                <ChartBarDefault />
             </section>
 
         </div>

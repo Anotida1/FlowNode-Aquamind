@@ -1,4 +1,11 @@
-import { Crop } from "@/types/crop-water/types";
+import { Crop, Demand } from "@/types/crop-water/types";
+
+export const demandStyles: Record<Demand, string> = {
+    Low: "bg-green-100 text-green-800 border-green-200",
+    Medium: "bg-amber-100 text-amber-800 border-amber-200",
+    High: "bg-orange-100 text-orange-800 border-orange-200",
+    "Very High": "bg-red-100 text-red-800 border-red-200",
+}
 
 export const crops: Crop[] = [
     {
@@ -21,6 +28,43 @@ export const crops: Crop[] = [
         criticalStage: "Flowering",
         description:
             "Maize needs consistent moisture throughout its growth cycle. Water stress around flowering can significantly affect grain formation.",
+    },
+    {
+        id: "pearl-millet",
+        name: "Pearl Millet",
+        scientificName: "Cenchrus americanus",
+        water: {
+            min: 250,
+            max: 500,
+            demand: "Low",
+        },
+        temperature: {
+            min: 25,
+            max: 35,
+        },
+        ph: {
+            min: 5.0,
+            max: 8.0,
+        },
+        moisture: {
+            min: 15,
+            max: 35,
+        },
+        rainfall: {
+            min: 250,
+            max: 600,
+        },
+        droughtTolerance: 95,
+        stages: [
+            { name: "Germination", demand: 20 },
+            { name: "Vegetative Growth", demand: 30 },
+            { name: "Flowering", demand: 75 },
+            { name: "Grain Filling", demand: 50 },
+            { name: "Maturity", demand: 15 },
+        ],
+        criticalStage: "Flowering",
+        description:
+            "Pearl millet is a highly drought-tolerant cereal that thrives in hot, dry environments. It is well suited to areas with low rainfall and sandy soils, although sufficient moisture during flowering improves grain production.",
     },
     {
         id: "sorghum",

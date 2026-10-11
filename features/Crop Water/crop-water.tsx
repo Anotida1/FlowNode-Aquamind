@@ -35,15 +35,10 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { Crop, Demand } from "@/types/crop-water/types"
-import { crops } from "@/features/Crop Water/config"
+import { Crop } from "@/types/crop-water/types"
+import { crops, demandStyles } from "@/features/Crop Water/config"
 
-const demandStyles: Record<Demand, string> = {
-    Low: "bg-muted text-muted-foreground border-border",
-    Medium: "bg-amber-50 text-amber-700 border-amber-200",
-    High: "bg-orange-50 text-orange-700 border-orange-200",
-    "Very High": "bg-red-50 text-red-700 border-red-200",
-}
+
 
 function WaterBar({ value }: { value: number }) {
     return (
@@ -437,7 +432,7 @@ export default function CropWater() {
                         },
                         {
                             icon: Sprout,
-                            value: "6 crops",
+                            value: `${crops.length} crops`,
                             label: "In the library",
                         },
                         {

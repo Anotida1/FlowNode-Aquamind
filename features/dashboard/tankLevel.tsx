@@ -11,6 +11,8 @@ import {
     Power,
     RefreshCw,
     Sparkles,
+    Target,
+    TargetIcon,
     Thermometer,
     TrendingUp,
     Waves,
@@ -28,10 +30,44 @@ import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 
+import { useEffect, useState } from "react";
+import { ref, onValue } from "firebase/database";
+import { database } from "@/lib/firebase";
+import AiOverview from "./AiOverview"
+
+type TankReadings = {
+    capacity: number;
+    highLevel: number;
+    lowLevel: number;
+    waterLevel: number;
+}
+
 export default function TankDashboard() {
-    const tankLevel = 72
-    const capacity = 5000
-    const currentVolume = 3600
+    const [data, setData] = useState<TankReadings | null>(null);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const dbRef = ref(database, "tank");
+
+        const unsubscribe = onValue(
+            dbRef,
+            (snapshot) => {
+                setData(snapshot.val());
+                console.log("Database updated:", snapshot.val());
+                setError("");
+            },
+            (err) => {
+                console.error(err);
+                setError(err.message);
+            }
+        );
+
+        return () => unsubscribe();
+    }, []);
+
+    const capacity = data?.capacity || 1000; // Default capacity if data is null
+    const tankLevel = data?.waterLevel || 0;
+    const currentVolume = (capacity * tankLevel) / 100;
 
     return (
         <div className="min-h-screen bg-muted/30 p-6">
@@ -103,7 +139,6 @@ export default function TankDashboard() {
                                             }}
                                         >
                                             {/* Water waves */}
-                                            {/* Water waves */}
                                             <div className="absolute -top-3 left-[-50%] h-8 w-[200%] animate-water-wave rounded-[50%] bg-blue-400/80" />
                                         </div>
 
@@ -156,8 +191,8 @@ export default function TankDashboard() {
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-4">
-
-                                        <div className="rounded-lg border p-4">
+                                        {/* TODO: Add color on borders depending on level */}
+                                        <div className={`rounded-lg border p-4`}>
                                             <div className="mb-2 flex items-center gap-2 text-muted-foreground">
                                                 <ArrowUp className="h-4 w-4" />
                                                 <span className="text-sm">
@@ -166,7 +201,7 @@ export default function TankDashboard() {
                                             </div>
 
                                             <p className="font-semibold">
-                                                90%
+                                                {data?.highLevel || 90}%
                                             </p>
                                         </div>
 
@@ -185,47 +220,33 @@ export default function TankDashboard() {
 
                                     </div>
 
-                                    <p className="text-xs text-muted-foreground">
-                                        Last sensor update: 12 seconds ago
-                                    </p>
-
-                                </div>
-
-                                <Card className="mt-6 w-full col-span-2">
-                                    <CardHeader className="pb-3">
-                                        <div className="flex items-center gap-2">
-                                            <div className="rounded-lg bg-primary/10 p-2">
-                                                <Sparkles className="h-4 w-4 text-primary" />
+                                    <div className="flex items-center justify-between rounded-lg border p-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="rounded-full bg-green-500/10 p-3">
+                                                <Power className="h-5 w-5 text-green-500" />
                                             </div>
 
                                             <div>
-                                                <CardTitle className="text-base">
-                                                    AI Water Advisor
-                                                </CardTitle>
-                                                <p className="text-xs text-muted-foreground">
-                                                    Based on your current water data
+                                                <p className="font-medium">
+                                                    Pump Status
+                                                </p>
+
+                                                <p className="text-sm text-green-600">
+                                                    Running
                                                 </p>
                                             </div>
                                         </div>
-                                    </CardHeader>
 
-                                    <CardContent>
-                                        <div className="rounded-lg bg-muted/50 p-4">
-                                            <p className="text-sm leading-relaxed">
-                                                Your tank is at <strong>72%</strong>, which is a healthy
-                                                level. Your water usage is slightly higher than yesterday.
-                                                Consider checking for running taps or possible leaks if this
-                                                continues.
-                                            </p>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                                        <div className="h-3 w-3 rounded-full bg-green-500" />
+                                    </div>
+
+                                </div>
                             </div>
                         </CardContent>
                     </Card>
 
                     {/* Stats */}
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                    <div className="col-span-1 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
 
                         <Card>
                             <CardContent className="flex items-center gap-4 p-6">
@@ -251,43 +272,21 @@ export default function TankDashboard() {
 
                         <Card>
                             <CardContent className="flex items-center gap-4 p-6">
-                                <div className="rounded-lg bg-cyan-500/10 p-3">
-                                    <Waves className="h-6 w-6 text-cyan-500" />
+                                <div className="rounded-lg bg-purple-500/10 p-3">
+                                    <TargetIcon className="h-6 w-6 text-purple-500" />
                                 </div>
 
                                 <div>
                                     <p className="text-sm text-muted-foreground">
-                                        Flow Rate
+                                        Tank Status
                                     </p>
 
                                     <p className="text-2xl font-bold">
-                                        12.4 L/min
+                                        Active
                                     </p>
 
-                                    <p className="text-xs text-muted-foreground">
-                                        Current flow
-                                    </p>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        <Card>
-                            <CardContent className="flex items-center gap-4 p-6">
-                                <div className="rounded-lg bg-orange-500/10 p-3">
-                                    <Thermometer className="h-6 w-6 text-orange-500" />
-                                </div>
-
-                                <div>
-                                    <p className="text-sm text-muted-foreground">
-                                        Water Temperature
-                                    </p>
-
-                                    <p className="text-2xl font-bold">
-                                        24.6°C
-                                    </p>
-
-                                    <p className="text-xs text-muted-foreground">
-                                        Normal range
+                                    <p className="text-xs text-green-600">
+                                        All systems are operational
                                     </p>
                                 </div>
                             </CardContent>
@@ -315,13 +314,39 @@ export default function TankDashboard() {
                             </CardContent>
                         </Card>
 
+
+                        <Card>
+                            <CardContent className="flex items-center gap-4 p-6">
+                                <div className="rounded-lg bg-yellow-500/10 p-3">
+                                    <Activity className="h-6 w-6 text-orange-500" />
+                                </div>
+
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Temperature Status
+                                    </p>
+
+                                    <p className="text-2xl font-bold">
+                                        24°C
+                                    </p>
+
+                                    <p className="text-xs text-green-600">
+                                        Warm
+                                    </p>
+                                </div>
+                            </CardContent>
+                        </Card>
+
                     </div>
                 </div>
 
                 {/* Lower section */}
                 <div className="grid gap-6 lg:grid-cols-3">
+                    {/*  Ai  */}
+                    <AiOverview />
+
                     {/* Alerts */}
-                    <Card>
+                    <Card className="col-span-2 md:col-span-1">
                         <CardHeader>
                             <CardTitle>System Alerts</CardTitle>
                         </CardHeader>
@@ -348,73 +373,6 @@ export default function TankDashboard() {
 
                         </CardContent>
                     </Card>
-
-
-
-                    {/* Pump control */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Pump Control</CardTitle>
-                            <p className="text-sm text-muted-foreground">
-                                Main water pump
-                            </p>
-                        </CardHeader>
-
-                        <CardContent className="space-y-6">
-
-                            <div className="flex items-center justify-between rounded-lg border p-4">
-                                <div className="flex items-center gap-3">
-                                    <div className="rounded-full bg-green-500/10 p-3">
-                                        <Power className="h-5 w-5 text-green-500" />
-                                    </div>
-
-                                    <div>
-                                        <p className="font-medium">
-                                            Pump Status
-                                        </p>
-
-                                        <p className="text-sm text-green-600">
-                                            Running
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="h-3 w-3 rounded-full bg-green-500" />
-                            </div>
-
-                            <Separator />
-
-                            <div>
-                                <p className="mb-3 text-sm font-medium">
-                                    Pump Mode
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-2">
-                                    <Button>
-                                        Automatic
-                                    </Button>
-
-                                    <Button variant="outline">
-                                        Manual
-                                    </Button>
-                                </div>
-                            </div>
-
-                            <Button
-                                variant="destructive"
-                                className="w-full"
-                            >
-                                Turn Pump Off
-                            </Button>
-
-                            <p className="text-center text-xs text-muted-foreground">
-                                Automatic mode will control the pump based
-                                on tank level.
-                            </p>
-
-                        </CardContent>
-                    </Card>
-
                 </div>
 
 

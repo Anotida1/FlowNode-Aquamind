@@ -301,9 +301,9 @@ export default function AquaMindChatPage() {
         <main className="relative flex h-[calc(100vh-7rem)] min-h-0 flex-1 flex-col overflow-hidden bg-background">
             {/* Background decoration */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
+                <div className="absolute -left-40 -top-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
 
-                <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
+                <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
             </div>
 
             <div className=" relative flex min-h-0 flex-1 flex-col">
@@ -317,16 +317,17 @@ export default function AquaMindChatPage() {
                         <div className="w-full max-w-3xl">
                             {/* Logo */}
                             <div className="md:mt-0 mb-8 flex flex-col items-center text-center">
-                                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-500/10 ring-1 ring-cyan-500/20">
-                                    <Droplets className="h-8 w-8 text-cyan-500" />
+                                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/10">
+                                    <Droplets className="h-8 w-8 text-primary" />
                                 </div>
 
                                 <div className="mb-2 flex items-center gap-2">
                                     <h1 className="text-3xl font-semibold tracking-tight">
-                                        How can I help with water?
+                                        How can I help with
+                                        <span className="text-primary"> water?</span>
                                     </h1>
 
-                                    <Sparkles className="h-5 w-5 text-cyan-500" />
+                                    <Sparkles className="h-5 w-5 text-primary" />
                                 </div>
 
                                 <p className="max-w-xl text-sm leading-6 text-muted-foreground">
@@ -366,8 +367,8 @@ export default function AquaMindChatPage() {
                                                 )}
                                             >
                                                 {!isUser && (
-                                                    <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10">
-                                                        <Droplets className="h-4 w-4 text-cyan-500" />
+                                                    <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                                                        <Droplets className="h-4 w-4 text-primary" />
                                                     </div>
                                                 )}
 
@@ -382,7 +383,7 @@ export default function AquaMindChatPage() {
                                                         className={cn(
                                                             "rounded-2xl px-4 py-3 text-sm leading-7",
                                                             isUser
-                                                                ? "rounded-br-md bg-cyan-600 text-white"
+                                                                ? "rounded-br-md bg-primary text-primary-foreground"
                                                                 : "rounded-bl-md border bg-card"
                                                         )}
                                                     >
@@ -394,11 +395,11 @@ export default function AquaMindChatPage() {
                                                             </div>
                                                         ) : (
                                                             <div className="flex items-center gap-1.5 py-1">
-                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-cyan-500 [animation-delay:-0.3s]" />
+                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-primary [animation-delay:-0.3s]" />
 
-                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-cyan-500 [animation-delay:-0.15s]" />
+                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-primary [animation-delay:-0.15s]" />
 
-                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-cyan-500" />
+                                                                <span className="h-2 w-2 animate-bounce rounded-full bg-primary" />
                                                             </div>
                                                         )}
                                                     </div>
@@ -429,7 +430,7 @@ export default function AquaMindChatPage() {
         ============================== */}
                 <div className="relative shrink-0 px-4 pb-5 pt-3">
                     <div className="mx-auto w-full max-w-3xl">
-                        <div className="relative rounded-2xl border bg-card shadow-sm transition-all focus-within:border-cyan-500/40 focus-within:ring-2 focus-within:ring-cyan-500/10">
+                        <div className="relative rounded-2xl border bg-card shadow-sm transition-all focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-primary/10">
                             <Textarea
                                 ref={textareaRef}
                                 value={input}
@@ -470,7 +471,7 @@ export default function AquaMindChatPage() {
                                     onClick={() =>
                                         sendMessage()
                                     }
-                                    className="h-9 w-9 rounded-xl bg-cyan-600 hover:bg-cyan-700"
+                                    className="h-9 w-9 rounded-xl bg-primary hover:bg-primary/90"
                                 >
                                     {isStreaming ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />

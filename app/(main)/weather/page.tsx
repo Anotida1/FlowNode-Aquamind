@@ -295,7 +295,7 @@ export default function Home() {
         <header className="mb-7 flex items-center justify-between">
           <div>
             <div className="flex items-center gap-3">
-              <div className="grid size-9 place-items-center rounded-xl bg-[#17384a] text-white">
+              <div className="grid size-9 place-items-center rounded-xl bg-primary text-white">
                 <CloudSun size={20} />
               </div>
 
@@ -313,7 +313,7 @@ export default function Home() {
             <button
               onClick={() => setUnit("C")}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition ${unit === "C"
-                ? "bg-[#17384a] text-white"
+                ? "bg-primary text-white"
                 : "text-slate-500 hover:text-slate-900"
                 }`}
             >
@@ -323,7 +323,7 @@ export default function Home() {
             <button
               onClick={() => setUnit("F")}
               className={`rounded-lg px-3 py-2 text-sm font-medium transition ${unit === "F"
-                ? "bg-[#17384a] text-white"
+                ? "bg-primary text-white"
                 : "text-slate-500 hover:text-slate-900"
                 }`}
             >
@@ -350,7 +350,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={searching}
-              className="rounded-xl bg-[#17384a] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#214b60] disabled:opacity-60"
+              className="rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 disabled:opacity-60"
             >
               {searching ? "Searching..." : "Search"}
             </button>
@@ -500,7 +500,7 @@ export default function Home() {
                       key={date}
                       onClick={() => setSelectedDay(index)}
                       className={`group min-h-[210px] rounded-2xl border p-4 transition ${active
-                        ? "border-[#17384a] bg-[#17384a] text-white shadow-xl shadow-[#17384a]/20"
+                        ? "border-primary bg-primary text-white shadow-xl shadow-primary/20"
                         : "border-slate-200/70 bg-white/70 text-slate-900 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
                         }`}
                     >

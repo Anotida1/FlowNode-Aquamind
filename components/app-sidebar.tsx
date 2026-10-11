@@ -23,7 +23,9 @@ import {
   DropletsIcon,
   LayoutDashboardIcon,
   LeafIcon,
+  MicIcon,
 } from "lucide-react"
+import Image from "next/image"
 
 const data = {
   user: {
@@ -41,6 +43,11 @@ const data = {
       title: "AI",
       url: "/ai",
       icon: <BotIcon className="size-4" />,
+    },
+    {
+      title: "Voice Assistant",
+      url: "/voice",
+      icon: <MicIcon className="size-4" />,
     },
     {
       title: "Learning Hub",
@@ -87,10 +94,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               className="data-[slot=sidebar-menu-button]:p-1.5!"
-              render={<a href="#" />}
+              render={<a href="/dashboard" />}
             >
-              <CommandIcon className="size-5!" />
-              <span className="text-base font-semibold">AquaMind</span>
+              <Image src="/logo.png" height={24} width={24} alt="Aquamind Logo" />
+              <span className="text-base font-semibold"><span className="text-primary">Aqua</span>Mind</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

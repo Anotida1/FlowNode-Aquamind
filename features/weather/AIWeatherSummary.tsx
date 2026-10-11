@@ -48,7 +48,7 @@ export default function AIWeatherSummary({ message }: Props) {
             <div className="flex items-start justify-between gap-4">
                 <div>
                     <div className="flex items-center gap-2">
-                        <div className="grid size-9 place-items-center rounded-xl bg-[#17384a] text-white">
+                        <div className="grid size-9 place-items-center rounded-xl bg-primary text-white">
                             <Sparkles size={18} />
                         </div>
 
@@ -87,7 +87,7 @@ export default function AIWeatherSummary({ message }: Props) {
 
                     <button
                         onClick={generateSummary}
-                        className="rounded-xl bg-[#17384a] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#214b60]"
+                        className="rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 "
                     >
                         <span className="flex items-center gap-2">
                             <Sparkles size={16} />

@@ -8,6 +8,7 @@ import {
     ImagePlus,
     Leaf,
     Loader2,
+    PlantPot,
     ScanLine,
     Sparkles,
     Thermometer,
@@ -26,38 +27,8 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Separator } from "@/components/ui/separator"
+import { WaterStressResult } from "@/types/crop-stress/types"
 
-type WaterStressResult = {
-    stressScore: number
-    stressLevel:
-    | "No significant stress"
-    | "Mild stress"
-    | "Moderate stress"
-    | "Severe stress"
-    confidence: number
-    crop: string
-    visualSigns: string[]
-
-    advice: {
-        summary: string
-        recommendation: string
-    }
-
-    evidence: {
-        type:
-        | "crop_appearance"
-        | "soil_moisture"
-        | "environment"
-        title: string
-        description: string
-    }[]
-
-    metadata: {
-        analyzedAt: string
-        imageName: string
-        imageType: string
-    }
-}
 
 export default function WaterStressPage() {
     const fileInputRef = useRef<HTMLInputElement>(null)
@@ -619,7 +590,7 @@ export default function WaterStressPage() {
 
                             <>
 
-                                <div className="grid gap-6 lg:grid-cols-3">
+                                <div className="grid gap-6 lg:grid-cols-2">
 
                                     {/* IMAGE */}
 
@@ -686,12 +657,12 @@ export default function WaterStressPage() {
                                                 }
                                             />
 
-                                            <div className="grid grid-cols-2 gap-3 text-center">
+                                            <div className="grid grid-cols-1 gap-3 text-center">
 
                                                 <div className="rounded-lg border p-3">
 
                                                     <p className="text-2xl font-bold">
-                                                        {analysis.confidence}%
+                                                        {analysis.confidence * 100}%
                                                     </p>
 
                                                     <p className="text-xs text-muted-foreground">
@@ -714,45 +685,64 @@ export default function WaterStressPage() {
 
                                             </div>
 
-                                        </CardContent>
 
-                                    </Card>
+                                            <section className="flex flex-row items-start gap-3 mt-4 rounded-lg bg-primary/10 p-4 text-sm">
+                                                <div className="shrink-0">
+                                                    <PlantPot className="h-5 w-5 text-primary" />
+                                                </div>
 
-                                    {/* ADVICE */}
+                                                <div className="space-y-1">
+                                                    <p className="font-semibold text-sm">Note</p>
+                                                    <p className="text-muted-foreground text-xs leading-relaxed">
+                                                        Water stress can affect crop growth and yield. Scan your crop
+                                                        regularly, check soil moisture, and look for signs such as
+                                                        wilting or yellowing leaves.
+                                                    </p>
+                                                </div>
+                                            </section>
 
-                                    <Card>
-
-                                        <CardHeader>
-
-                                            <CardTitle className="flex items-center gap-2">
-
-                                                <Sparkles className="h-4 w-4 text-primary" />
-
-                                                AquaMind Advice
-
-                                            </CardTitle>
-
-                                        </CardHeader>
-
-                                        <CardContent>
-
-                                            <div className="rounded-xl bg-muted/60 p-5">
-
-                                                <p className="text-sm leading-6">
-                                                    {analysis.advice.summary}
-                                                </p>
-
-                                                <p className="mt-4 text-sm font-medium">
-                                                    {analysis.advice.recommendation}
-                                                </p>
-
-                                            </div>
 
                                         </CardContent>
 
                                     </Card>
+
+
 
                                 </div>
+
+                                {/* ADVICE */}
+
+                                <Card>
+
+                                    <CardHeader>
+
+                                        <CardTitle className="flex items-center gap-2">
+
+                                            <Sparkles className="h-4 w-4 text-primary" />
+
+                                            AquaMind Advice
+
+                                        </CardTitle>
+
+                                    </CardHeader>
+
+                                    <CardContent>
+
+                                        <div className="rounded-xl bg-muted/60 p-5">
+
+                                            <p className="text-sm leading-6">
+                                                {analysis.advice.summary}
+                                            </p>
+
+                                            <p className="mt-4 text-sm font-medium">
+                                                {analysis.advice.recommendation}
+                                            </p>
+
+                                        </div>
+
+                                    </CardContent>
+
+                                </Card>
 
                                 {/* VISUAL SIGNS */}
 
