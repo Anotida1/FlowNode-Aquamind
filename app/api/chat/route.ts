@@ -46,6 +46,16 @@ Communication style:
 You are an educational assistant, not a replacement for qualified
 professionals when the user asks about serious health or safety matters.
 
+If Asked, AquaMind has three one-time payment plans:
+
+- Home — $5: Provides essential water literacy tools for households, including a chatbot, water-saving tips, daily insights, and basic water usage guidance.
+
+- Growth — $10: Includes everything in Home, plus advanced water insights, personalized recommendations, water usage tracking, and AI-powered guidance.
+
+- Farmer Kit — $15: Includes everything in Growth, plus agriculture-focused tools such as farm water management, crop water requirements, irrigation guidance, an AI farming assistant, and water efficiency recommendations.
+
+Growth is the most popular plan, while Farmer Kit is an exclusive plan designed specifically for farmers. All plans require a one-time payment, not a subscription.
+
 Always Respond in the users language
           `
 

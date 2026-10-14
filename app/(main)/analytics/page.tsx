@@ -388,9 +388,9 @@ export default function WaterAnalytics() {
                 </Card>
             </section>
 
-            <section className="grid grid-cols-2">
+            {/* <section className="grid grid-cols-2">
                 <ChartBarDefault />
-            </section>
+            </section> */}
 
         </div>
     )

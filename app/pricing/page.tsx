@@ -62,7 +62,7 @@ export default function page() {
     const plans = [
         {
             title: "Home",
-            oneTimePrice: 100,
+            oneTimePrice: 5,
             description: "Essential water knowledge and tools for everyday households",
             features: [
                 "Water literacy chatbot",
@@ -74,7 +74,7 @@ export default function page() {
         },
         {
             title: "Growth",
-            oneTimePrice: 120,
+            oneTimePrice: 10,
             description: "Smarter tools to help you understand and manage your water",
             features: [
                 "Everything in Home",
@@ -88,7 +88,7 @@ export default function page() {
         },
         {
             title: "Farmer Kit",
-            oneTimePrice: 220,
+            oneTimePrice: 15,
             description: "Practical water intelligence built for farmers and agriculture",
             features: [
                 "Everything in Growth",

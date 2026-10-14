@@ -260,7 +260,7 @@ export default function TankDashboard() {
                                     </p>
 
                                     <p className="text-2xl font-bold">
-                                        1,240 L
+                                        985 L
                                     </p>
 
                                     <p className="text-xs text-green-600 flex flex-row items-center gap-2">
@@ -327,7 +327,7 @@ export default function TankDashboard() {
                                     </p>
 
                                     <p className="text-2xl font-bold">
-                                        24°C
+                                        22°C
                                     </p>
 
                                     <p className="text-xs text-green-600">

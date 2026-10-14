@@ -15,7 +15,7 @@ export function Markdown({ content }: MarkdownProps) {
                 components={{
                     // Paragraphs
                     p: ({ children }) => (
-                        <p className="mb-2 last:mb-0 leading-6">{children}</p>
+                        <p className="mb-1 last:mb-0 leading-5">{children}</p>
                     ),
 
                     // Headings
