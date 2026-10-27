@@ -60,6 +60,11 @@ const data = {
       icon: <BarChart3Icon className="size-4" />,
     },
     {
+      title: "Soil Analysis",
+      url: "/soil",
+      icon: <LeafIcon className="size-4" />,
+    },
+    {
       title: "Crop Scan",
       url: "/crop",
       icon: <LeafIcon className="size-4" />,
