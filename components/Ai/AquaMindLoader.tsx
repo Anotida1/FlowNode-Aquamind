@@ -16,11 +16,10 @@ export default function AquaMindLoader() {
                     <div className="absolute inset-3 rounded-full border border-cyan-500/20" />
 
                     {/* Water droplet */}
-                    <div className="relative flex h-16 w-16 animate-bounce items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-600 [animation-duration:1.8s]">
+                    <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl text-cyan-600 [animation-duration:1.8s]">
                         <Droplets className="h-10 w-10 fill-cyan-500/20 stroke-[1.5]" />
                     </div>
 
-                    <Waves className="absolute bottom-0 right-0 h-7 w-7 text-cyan-600" />
                 </div>
 
                 <h3 className="mt-4 text-lg font-semibold">
