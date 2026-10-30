@@ -34,6 +34,7 @@ import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { database } from "@/lib/firebase";
 import AiOverview from "./AiOverview"
+import TankSwitch from "./tankSwitch"
 
 type TankReadings = {
     capacity: number;
@@ -220,25 +221,7 @@ export default function TankDashboard() {
 
                                     </div>
 
-                                    <div className="flex items-center justify-between rounded-lg border p-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="rounded-full bg-green-500/10 p-3">
-                                                <Power className="h-5 w-5 text-green-500" />
-                                            </div>
-
-                                            <div>
-                                                <p className="font-medium">
-                                                    Pump Status
-                                                </p>
-
-                                                <p className="text-sm text-green-600">
-                                                    Running
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div className="h-3 w-3 rounded-full bg-green-500" />
-                                    </div>
+                                    <TankSwitch />
 
                                 </div>
                             </div>
